@@ -1,0 +1,42 @@
+---
+
+---
+
+<div class="accordion">
+  <div class="accordion__title">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+    <h2>Introduction</h2>
+  </div>
+  <div class="accordion__content">
+    <p>Love for blending the visual, data and tech with the end user. I am passionate about technology and automation, with a strong background in leading teams, developing innovative solutions, and enhancing user experiences. I have successfully managed projects that streamline web component development, website migrations, implement AI capabilities, site analytics and ensure seamless user experience including A11Y. I prioritize maintaining high standards in security and documentation, implementing automated systems for efficiency, accuracy and consistency. </p>
+  </div>
+</div>
+<script>
+	const accordions = document.querySelectorAll(".accordion");
+
+	const openAccordion = (accordion: Element) => {
+		const content: HTMLElement = accordion.querySelector(".accordion__content")!;
+		accordion.classList.add("accordion__active");
+		content.style.maxHeight = content.scrollHeight + "px";
+	};
+
+	const closeAccordion = (accordion: Element) => {
+		const content: HTMLElement = accordion.querySelector(".accordion__content")!;
+		accordion.classList.remove("accordion__active");
+		content.style.maxHeight = '';
+	};
+
+	accordions.forEach((accordion) => {
+		const title: HTMLElement = accordion.querySelector(".accordion__title")!;
+		const content: HTMLElement = accordion.querySelector(".accordion__content")!;
+
+		title!.onclick = () => {
+			if (content!.style.maxHeight) {
+			closeAccordion(accordion);
+		} else {
+			accordions.forEach((accordion) => closeAccordion(accordion));
+			openAccordion(accordion);
+		}
+		};
+	});
+</script>

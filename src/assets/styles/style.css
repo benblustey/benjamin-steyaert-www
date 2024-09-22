@@ -1,0 +1,296 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+  /* --main-bg-bk: #1c1c3e; */
+  /* https://www.color-hex.com/color-palette/1025420 */
+  --main-bg-bk: #0b0b18;
+  --main-headings:#ff8132;
+  --main-copy: #d1d1d8;
+  --link-new: #32f0ff;
+  --link-visited: #23a8b2;
+  --main-accent: #ff49db;
+  --accent-gradient: linear-gradient(
+    45deg,
+    rgb(var(--main-bg-bk)) 0%,
+    rgb(var(--main-accent)),
+    white 60%
+  );
+  --page-scale: 1;
+  --container-size: 440px;
+
+  --container-margin-xs: clamp(0.5rem, calc(0.5rem + ((1vw - 0.48rem) * 2.5316)), 1rem);
+  --container-margin-sm: clamp(1rem, calc(1rem + ((1vw - 0.48rem) * 2.5316)), 2.5rem);
+  --container-margin-md: clamp(3rem, calc(3rem + ((1vw - 0.48rem) * 2.5316)), 4rem);
+  --container-margin-lg: clamp(4rem, calc(4rem + ((1vw - 0.48rem) * 2.5316)), 5rem);
+  --container-margin-xl: clamp(5rem, calc(5rem + ((1vw - 0.48rem) * 15.8228)), 11.25rem);
+
+  --font-size-sm: clamp(12px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 14px);
+  --font-size-md: clamp(18px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 24px);
+  --font-size-xl: clamp(68px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 120px);
+  --card-width: 300px;
+  --card-height: 300px;
+  /* --card-height: 12rem;
+  --card-width: 12rem; */
+}
+
+code {
+  font-family:
+    Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+}
+
+html {
+  background-color: #0b0b18;
+}
+body {
+  font-family: 'Courier New', Courier, monospace;
+  min-width: 380px;
+  margin-top: var(--container-margin-xl);
+}
+
+h1 {
+  color: var(--main-headings);
+  font-size: clamp(3.5rem, 4vw + 2.25rem, 6rem);
+  line-height: 8rem;
+  margin: var(--container-margin-lg) 0 var(--container-margin-xl);
+  text-align: center;
+  font-family: Arial Black, Helvetica, sans-serif;
+  background: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+p {
+  color: var(--main-copy);
+  font-size: 1rem;
+  margin: 0;
+}
+main {
+  margin: auto;
+  padding: 1rem;
+  max-width: var(--container-size);
+  color: white;
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  @media screen and (min-width: 768px) {
+    margin: 0 auto;
+  }
+}
+section {
+  margin-bottom: 4rem;
+}
+.heading {
+  max-width: calc(40rem * var(--page-scale));
+  margin-inline: auto;
+  /* .headshot {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+    color: teal;
+    box-shadow: var(--avatar-border-color) 0 0 0 2px;
+    transform: translateZ(0);border-radius: 50% !important;
+    img {
+      transition: transform .5s;
+      max-width: 100%;
+      height: auto;
+      vertical-align: middle;
+    }
+  } */
+}
+li {
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+  a {
+    border: 2px solid var(--main-accent);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    color: var(--link-new);
+    border-radius: calc(0.5rem * 1);
+    span {
+      margin-left: 1rem ;
+    }
+    &:visited {
+      color: var(--link-visited);
+      fill: var(--link-visited);
+    }
+    &:hover {
+      
+    }
+  }
+  svg {
+    fill: var(--link-visited);
+    display: inline-block;
+    width: 32px;
+    height: 2rem;
+  }
+}
+.accordion {
+	width: 100%;
+	max-width: 500px;
+	overflow: hidden;
+	margin-top: 20px;
+  border-radius: calc(0.5rem * 1);
+  border: 2px solid var(--main-accent);
+  svg {
+    fill: var(--link-visited);
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    transition: all 0.25s ease-out;
+  }
+
+	.accordion__title {
+		position: relative;
+    padding: 1rem 2rem;
+    color: var(--link-new);
+		cursor: pointer;
+    display: flex;
+    align-items: center;
+	}
+
+	.accordion__content {
+		padding: 0 20px;
+		max-height: 0;
+		overflow: hidden;
+		will-change: max-height;
+		transition: all 0.25s ease-out;
+		opacity: 0;
+	}
+	h2 {
+    margin-left: 1rem;
+  }
+
+	&.accordion__active {
+		.accordion__intro {
+		}
+    svg {
+      rotate: 90deg;
+    }
+		.accordion__content {
+			padding: 0 20px 20px;
+			opacity: 1;
+		}
+	}
+}
+/* https://codepen.io/benblustey/pen/poXMNKN */
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+.headshot {
+  background-image: url('../imgs/benjamin-steyaert.jpg');
+  background-size: 100.6%;
+  width: var(--card-width);
+  height: var(--card-height);
+  position: relative;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.headshot:hover {
+  color: rgb(88 199 250 / 100%);
+  transition: color 1s;
+}
+.headshot:hover:before, .headshot:hover:after {
+  opacity: 0.5;
+}
+.headshot::before {
+  content: "";
+  width: 104%;
+  height: 102%;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    var(--rotate)
+    , #32f0ff, #ff8132 43%, #ff49db);
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+/* .headshot::after {
+  position: absolute;
+  content: "";
+  top: calc(var(--card-height) / 6);
+  left: 0;
+  right: 0;
+  z-index: -1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(var(--card-height) / 6));
+  background-image: linear-gradient(var(--rotate), #5ddcff, #3c67e3 43%, #4e00c2);
+  opacity: 1;
+  transition: opacity .5s;
+  animation: spin 2.5s linear infinite;
+} */
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
