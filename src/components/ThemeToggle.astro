@@ -16,38 +16,25 @@
   const localStorageTheme = localStorage.getItem('theme') as string;
   const systemSettingDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-  interface SystemProfile {
-    matches?: boolean
-  }
-
   function setTheme(theme:string) {
     htmlTag.setAttribute('data-theme', theme);
   }
-
-  function getLocalStorageTheme({localStorageTheme, systemSettingDark}: { localStorageTheme: string; systemSettingDark: SystemProfile }) {
-    if (localStorageTheme !== null) {
-      return localStorageTheme;
-    }
-    if (systemSettingDark.matches) {
-      return 'dark';
-    }
-    return 'light';
+  function setCheckbox(checked:boolean) {
+    modeToggle.checked = checked;
+  }
+  function getTheme(): string {
+    const theme: string = localStorageTheme || (systemSettingDark.matches ? 'dark' : 'light');
+    const themeBoolean: boolean = (theme == 'dark');
+    setCheckbox(themeBoolean);
+    return theme;
   }
 
-  modeToggle.addEventListener('click', (event) => {
-    if (modeToggle.checked) {
-      htmlTag.setAttribute('data-theme', 'dark');
-      setTheme('dark')
-    } else {
-      setTheme('light')
-    }
+  modeToggle.addEventListener('click', () => {
+    const theme = modeToggle.checked ? 'dark' : 'light';
+    setTheme(theme);
+    localStorage.setItem('theme',theme)
   });
 
-  let currentThemeSetting = getLocalStorageTheme({ localStorageTheme, systemSettingDark });
-  setTheme(currentThemeSetting);
+  setTheme(getTheme());
   
-  console.log('localStorageTheme:', localStorageTheme);
-  console.log(currentThemeSetting);
-  console.log('systemSettingDark:', systemSettingDark);
-
 </script>
