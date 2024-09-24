@@ -69,8 +69,10 @@ table {
   --font-size-sm: clamp(12px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 14px);
   --font-size-md: clamp(18px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 24px);
   --font-size-xl: clamp(68px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 120px);
-  --font-size-first: clamp(68px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 120px);
-  --font-size-last: clamp(68px,calc(4.25rem + ((1vw - 7.68px) * 12.5)), 120px);
+  --font-size-first: clamp(3.6rem, calc(3.6rem + ((1vw - 0.24375rem) * 12.0494)), 9.7rem);
+  --font-size-last: clamp(4.5rem, calc(4.5rem + ((1vw - 0.24375rem) * 14.8148)), 12rem);
+  --margin-left-last: clamp(1.2rem, calc(1.2rem + ((1vw - 0.24375rem) * 3.9506)), 3.2rem);
+  --margin-top-last: clamp(2.6rem, calc(2.6rem + ((1vw - 0.24375rem) * 9.0864)), 7.2rem);
   --card-width: 300px;
   --card-height: 300px;
   /* --card-height: 12rem;
@@ -84,14 +86,6 @@ body {
   min-width: 380px;
   margin-top: var(--container-margin-xl);
 }
-
-/* h1 {
-  color: var(--main-headings);
-  font-size: clamp(3.5rem, 4vw + 2.25rem, 6rem);
-  line-height: 8rem;
-  margin: var(--container-margin-lg) 0 var(--container-margin-xl);
-  font-family: Arial Black, Helvetica, sans-serif;
-} */
 
 h1.name-heading {
   margin-top: var(--container-margin-xl);
@@ -108,24 +102,24 @@ h1.name-heading {
     -webkit-text-fill-color: transparent;
   }
   .last {
-    font-size: var(--font-size-last);
-    /* margin-top: calc(var(--container-margin-xl)*-1); */
     display: inline-block;
     color: var(--main-accent);
-    text-shadow: 6px 0px 12px rgba(0,0,0,1);
+    font-size: 0;
+    margin-top: calc(var(--margin-top-last)*-1);
+    padding-left: var(--margin-left-last);
     span {
-      &:not(:first-child) {
-        margin-left: -2.2rem;
-      }
+      text-shadow: 0px 0px 12px rgba(0,0,0,1);
+      font-size: var(--font-size-last);
+      margin-left: calc(var(--margin-left-last)*-1);
       &:nth-child(4) {
-        margin-left: -2.4rem;
+        margin-left: calc(var(--margin-left-last)* -1.1);
       }
       &:nth-child(5) {
-        margin-left: -2.6rem;
+        margin-left: calc(var(--margin-left-last)* -1.1);
       }
-      &:nth-child(6) {
-        margin-left: -2.4rem;
-      }
+      /* &:nth-child(6) {
+        margin-left: var(--margin-left-last);
+      }*/
     }
   }
 }
@@ -199,6 +193,7 @@ section {
 }
 
 li {
+  backdrop-filter: blur(10px);
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -302,6 +297,7 @@ li {
   }
 }
 .heading {
+  display: ;
   max-width: calc(40rem * var(--page-scale));
   margin-inline: auto;
   .headshot {
