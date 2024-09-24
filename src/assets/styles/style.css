@@ -80,16 +80,17 @@ table {
 }
 html {
   background-color: #0b0b18;
+  background-image: linear-gradient(to right bottom, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #16172a, #211f3c, #2e274f, #543779, #8543a0, #bf4ac1, #ff49db);
 }
 body {
   font-family: 'Courier New', Courier, monospace;
   min-width: 380px;
-  margin-top: var(--container-margin-xl);
+  padding-top: var(--container-margin-xl);
 }
 
 h1.name-heading {
-  margin-top: var(--container-margin-xl);
-  margin-bottom: var(--container-margin-xl);
+  margin-top: var(--container-margin-md);
+  margin-bottom: var(--container-margin-md);
   font-family: Arial Black, Helvetica, sans-serif;
   line-height: normal;
   text-align: center;
@@ -147,6 +148,7 @@ section {
 	margin-top: 20px;
   border-radius: calc(0.5rem * 1);
   border: 2px solid var(--main-accent);
+  background-color: rgba(11, 11, 24, 0.2);
   svg {
     fill: var(--link-visited);
     display: inline-block;
@@ -194,6 +196,8 @@ section {
 
 li {
   backdrop-filter: blur(10px);
+  background-color: rgba(11, 11, 24, 0.2);
+  box-shadow: 0 .5rem 3rem var(--main-accent);
   &:not(:last-child) {
     margin-bottom: 2rem;
   }
@@ -297,7 +301,6 @@ li {
   }
 }
 .heading {
-  display: ;
   max-width: calc(40rem * var(--page-scale));
   margin-inline: auto;
   .headshot {
@@ -306,11 +309,11 @@ li {
     width: var(--card-width);
     height: var(--card-height);
     position: relative;
-    border-radius: 50%;
+    /* border-radius: 50%; */
     margin: 0 auto;
+    transition: color 1s;
     &:hover {
       color: rgb(88 199 250 / 100%);
-      transition: color 1s;
     }
     &:hover:before,
     &:hover:after {
@@ -320,7 +323,7 @@ li {
       content: "";
       width: 104%;
       height: 102%;
-      border-radius: 50%;
+      /* border-radius: 50%; */
       background-image: linear-gradient(
         var(--rotate)
         , #32f0ff, #ff8132 43%, #ff49db);
@@ -329,6 +332,25 @@ li {
         top: -1%;
         left: -2%;
         animation: spin 2.5s linear infinite;
+    }
+    &::after {
+      position: absolute;
+      content: "";
+      top: calc(var(--card-height) / 6);
+      left: 0;
+      right: 0;
+      z-index: -1;
+      height: 100%;
+      width: 100%;
+      margin: 0 auto;
+      transform: scale(0.8);
+      filter: blur(calc(var(--card-height) / 6));
+      background-image: linear-gradient(
+        var(--rotate)
+        , #5ddcff, #3c67e3 43%, #4e00c2);
+        opacity: 1;
+      transition: opacity .5s;
+      animation: spin 2.5s linear infinite;
     }
   }
 }
