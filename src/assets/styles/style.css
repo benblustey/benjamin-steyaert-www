@@ -45,12 +45,6 @@ table {
 :root {
   /* --main-bg-bk: #1c1c3e; */
   /* https://www.color-hex.com/color-palette/1025420 */
-  --main-bg-bk: #0b0b18;
-  --main-headings:#ff8132;
-  --main-copy: #d1d1d8;
-  --link-new: #32f0ff;
-  --link-visited: #23a8b2;
-  --main-accent: #ff49db;
   --accent-gradient: linear-gradient(
     45deg,
     rgb(var(--main-bg-bk)) 0%,
@@ -81,9 +75,32 @@ table {
   --dark: #28292c;
   --slider-scale: 3rem;
 }
+
+[data-theme="light"] {
+  --main-bg-bk: #0b0b18;
+  --main-headings:#ff8132;
+  --main-copy: #d1d1d8;
+  --link-new: #32f0ff;
+  --link-visited: #23a8b2;
+  --main-accent: #4124ff;
+
+  --html-background: linear-gradient(to bottom, #ffffff, #eaeaea, #d6d6d6, #c2c2c2, #aeaeae);
+}
+
+[data-theme="dark"] {
+  --main-bg-bk: #0b0b18;
+  --main-headings:#ff8132;
+  --main-copy: #d1d1d8;
+  --link-new: #32f0ff;
+  --link-visited: #23a8b2;
+  --main-accent: #ff49db;
+
+  --html-background: linear-gradient(to right bottom, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #16172a, #211f3c, #2e274f, #543779, #8543a0, #bf4ac1, #ff49db);
+}
+
 html {
   background-color: #0b0b18;
-  background-image: linear-gradient(to right bottom, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #16172a, #211f3c, #2e274f, #543779, #8543a0, #bf4ac1, #ff49db);
+  background-image: var(--html-background);
 }
 body {
   font-family: 'Courier New', Courier, monospace;
