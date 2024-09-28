@@ -9,6 +9,9 @@ import robotsTxt from 'astro-robots-txt';
 export default defineConfig({
   site: 'https://www.benjamin-steyaert.com',
   output: 'static',
+  devToolbar: {
+    enabled: false
+  },
   integrations: [
     sitemap(),
     robotsTxt({
