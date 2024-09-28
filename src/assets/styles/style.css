@@ -44,13 +44,6 @@ table {
 
 :root {
   /* --main-bg-bk: #1c1c3e; */
-  /* https://www.color-hex.com/color-palette/1025420 */
-  --accent-gradient: linear-gradient(
-    45deg,
-    rgb(var(--main-bg-bk)) 0%,
-    rgb(var(--main-accent)),
-    white 60%
-  );
   --page-scale: 1;
   --container-size: 440px;
 
@@ -78,20 +71,36 @@ table {
   --dark: #28292c;
   --slider-scale: 3rem;
 }
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
 
 [data-theme="light"] {
   --main-bg-bk: #EEE5E9;
   --main-headings:#08415c;
   --main-copy: #073b54;
-  --link-new: #6b818c;
+  --link-new: #0d7272;
   --link-visited: #6b818c;
-  --main-accent: teal;
+  --main-accent: #0d7272;
   --first-name-gradient: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
   --html-background: linear-gradient(to bottom, #ffffff, #eaeaea, #d6d6d6, #c2c2c2, #aeaeae);
+  --gradient-headshot: var(--main-accent), var(--main-headings) 43%, var(--link-visited);
 
+  /* uncomment for moving text */
+  /* --margin-left-last: clamp(0.6rem, calc(0.6rem + ((1vw - 0.23rem) * 2.1154)), 1.7rem); */
   h1.name-heading {
     .last {
-      color: teal;
+      color:  var(--main-accent);
       span {
         text-shadow: none;
       }
@@ -124,15 +133,8 @@ table {
 	}
 }
 
-.flicker-slow{
-  animation: flicker 3s linear infinite;
-}
-
-.flicker-fast{
-  animation: flicker 1s linear infinite;
-}
-
 [data-theme="dark"] {
+  /* https://www.color-hex.com/color-palette/1025420 */
   --main-bg-bk: #0b0b18;
   --main-headings:#ff8132;
   --main-copy: #d1d1d8;
@@ -140,8 +142,8 @@ table {
   --link-visited: #6b818c;
   --main-accent: #ff49db;
 
+  --gradient-headshot: var(--link-new), var(--main-headings) 43%, var(--main-accent);
   --first-name-gradient: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
-
   --html-background: linear-gradient(to right bottom, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #16172a, #211f3c, #2e274f, #543779, #8543a0, #bf4ac1, #ff49db);
 
   h1.name-heading {
@@ -149,72 +151,79 @@ table {
       text-shadow: 0px 0px 12px rgba(0,0,0,1);
     }
   }
-  ul.link-list {
-    li {
-      backdrop-filter: blur(10px);
-      background-color: rgba(11, 11, 24, 0.2);
-      box-shadow: 0 .5rem 3rem var(--main-accent);
-      position: relative;
-  
-      a::before,
-      a::after,
-      span::before,
-      span::after {
-        content: '';
-        position: absolute;
-        background: transparent;
-        transition: 1s;
-        -webkit-mix-blend-mode: hue;
-      }
-  
-      a::before,
-      a::after,
-      span::before,
-      span::after {
-        width: 18px;
-        height: 8px;
-      }
-      span::before,
-      span::after {
-        width: 8px;
-        height: 18px;
-      }
-  
-      span::after {
-        top: -2px;
-        right: -2px;
-        border-top: 2px solid var(--link-new);
-        border-right: 2px solid var(--link-new);
-      }
-      a::after {
-        bottom: -2px;
-        right: -2px;
-        border-bottom: 2px solid var(--main-accent);
-        border-right: 2px solid var(--main-accent);
-      }
-  
-      a::before {
-        top: -2px;
-        left: -2px;
-        border-top: 2px solid var(--link-new);
-        border-left: 2px solid var(--link-new);
-      }
-      span::before {
-        bottom: -2px;
-        left: -2px;
-        border-bottom: 2px solid var(--main-accent);
-        border-left: 2px solid var(--main-accent);
-      }
-  
-      a:hover::before,
-      a:hover::after,
-      a:hover span::before,
-      a:hover span::after  {
-        width: calc( 180px / 2);
-        height: calc( 50px / 2);
-      }  
-    }
+  /* .last span:nth-child(4) {
+    animation: flicker 3s linear infinite;
   }
+  .last span:nth-child(7) {
+    animation: flicker 1s linear infinite;
+  }
+   */
+  .accordion {
+    border: 2px solid var(--main-accent);
+    border-radius: .5rem;
+  }
+  .accordion, 
+  ul.link-list li {
+    backdrop-filter: blur(10px);
+    background-color: rgba(11, 11, 24, 0.2);
+    box-shadow: 0 .5rem 3rem var(--main-accent);
+    position: relative;
+
+    a::before,
+    a::after,
+    span::before,
+    span::after {
+      content: '';
+      position: absolute;
+      background: transparent;
+      transition: 1s;
+      -webkit-mix-blend-mode: hue;
+    }
+    a::before,
+    a::after,
+    span::before,
+    span::after {
+      width: 18px;
+      height: 8px;
+    }
+    span::before,
+    span::after {
+      width: 8px;
+      height: 18px;
+    }
+    span::after {
+      top: -2px;
+      right: -2px;
+      border-top: 2px solid var(--link-new);
+      border-right: 2px solid var(--link-new);
+    }
+    a::after {
+      bottom: -2px;
+      right: -2px;
+      border-bottom: 2px solid var(--main-accent);
+      border-right: 2px solid var(--main-accent);
+    }
+    a::before {
+      top: -2px;
+      left: -2px;
+      border-top: 2px solid var(--link-new);
+      border-left: 2px solid var(--link-new);
+    }
+    span::before {
+      bottom: -2px;
+      left: -2px;
+      border-bottom: 2px solid var(--main-accent);
+      border-left: 2px solid var(--main-accent);
+    }
+    a:hover::before,
+    a:hover::after,
+    a:hover span::before,
+    a:hover span::after  {
+      width: calc( 180px / 2);
+      height: calc( 50px / 2);
+    }  
+  }
+  
 }
 @font-face {
   font-family: 'ArchivoBlack';
@@ -259,6 +268,7 @@ h1.name-heading {
     margin-top: calc(var(--margin-top-last)*-1);
     padding-left: var(--margin-left-last);
     span {
+      /* transition: margin-left .3s ease; */
       font-size: var(--font-size-last);
       margin-left: calc(var(--margin-left-last)*-1);
       &:nth-child(4) {
@@ -307,7 +317,6 @@ ul.link-list {
 	max-width: 500px;
 	overflow: hidden;
 	margin-top: 20px;
-  border-radius: calc(0.5rem * 1);
   /* border: 2px solid var(--main-accent);
   background-color: rgba(11, 11, 24, 0.2); */
 
@@ -370,19 +379,6 @@ ul.link-list {
   }
 }
 /* https://codepen.io/benblustey/pen/poXMNKN */
-@property --rotate {
-  syntax: "<angle>";
-  initial-value: 132deg;
-  inherits: false;
-}
-@keyframes spin {
-  0% {
-    --rotate: 0deg;
-  }
-  100% {
-    --rotate: 360deg;
-  }
-}
 .heading {
   max-width: calc(40rem * var(--page-scale));
   margin-inline: auto;
@@ -404,13 +400,11 @@ ul.link-list {
     &::before {
       content: "";
       width: 104%;
-      height: 102%;
-      background-image: linear-gradient(
-        var(--rotate)
-        , #32f0ff, #ff8132 43%, #ff49db);
+      height: 104%;
+      background-image: linear-gradient(var(--rotate), var(--gradient-headshot));
         position: absolute;
         z-index: -1;
-        top: -1%;
+        top: -2%;
         left: -2%;
         animation: spin 2.5s linear infinite;
     }
@@ -426,10 +420,8 @@ ul.link-list {
       margin: 0 auto;
       transform: scale(0.8);
       filter: blur(calc(var(--card-height) / 6));
-      background-image: linear-gradient(
-        var(--rotate)
-        , #5ddcff, #3c67e3 43%, #4e00c2);
-        opacity: 1;
+      background-image: linear-gradient(var(--rotate), var(--gradient-headshot));
+      opacity: 1;
       transition: opacity .5s;
       animation: spin 2.5s linear infinite;
     }
@@ -451,7 +443,8 @@ ul.link-list {
     /* background-color: var(--accent-gradient); */
     border-radius: calc(var(--slider-scale)/4);
     cursor: pointer;
-    background-image: linear-gradient(to bottom, #0b0b18, #1b2536, #224057, #225d76, #1d7c93, #0f8bac, #009ac5, #00a8e0, #29a1fb, #7892ff, #c177fe, #ff49db);
+    /* background-image: linear-gradient(to bottom, #0b0b18, #1b2536, #224057, #225d76, #1d7c93, #0f8bac, #009ac5, #00a8e0, #29a1fb, #7892ff, #c177fe, #ff49db); */
+    background: linear-gradient(0deg, rgba(0,212,255,1) 16%, rgba(11,11,24,1) 52%);
   }
   input {
     position: absolute;
@@ -463,6 +456,7 @@ ul.link-list {
     height: 100%;
     border-radius: calc(var(--slider-scale)/4);
     transition: 0.3s;
+    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.36);
   }
   input:checked ~ .slider {
     background-color: var(--light);
