@@ -80,14 +80,56 @@ table {
 }
 
 [data-theme="light"] {
-  --main-bg-bk: #0b0b18;
-  --main-headings:#ff8132;
-  --main-copy: #d1d1d8;
-  --link-new: #32f0ff;
-  --link-visited: #23a8b2;
-  --main-accent: #4124ff;
-
+  --main-bg-bk: #EEE5E9;
+  --main-headings:#08415c;
+  --main-copy: #073b54;
+  --link-new: #6b818c;
+  --link-visited: #6b818c;
+  --main-accent: teal;
+  --first-name-gradient: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
   --html-background: linear-gradient(to bottom, #ffffff, #eaeaea, #d6d6d6, #c2c2c2, #aeaeae);
+
+  h1.name-heading {
+    .last {
+      color: teal;
+      span {
+        text-shadow: none;
+      }
+    }
+  }
+  .accordion,
+  ul.link-list li {
+    box-shadow: rgba(195, 198, 209, 1) 0px 4px 0px 0px;
+    outline-color: rgb(156, 54, 181);
+    border-radius: 0.75em;
+    transition: all .25s ease-in-out;
+    position: relative;
+    &.accordion__active,
+    &:hover {
+      box-shadow: rgb(156, 54, 181) 0px 4px 0px 0px;
+      cursor: pointer;
+      border: none;
+    }
+  }
+}
+
+@keyframes flicker {
+	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+		//text-shadow: none;
+    opacity: .99;
+		
+	}
+	20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+		opacity: 0.4;
+	}
+}
+
+.flicker-slow{
+  animation: flicker 3s linear infinite;
+}
+
+.flicker-fast{
+  animation: flicker 1s linear infinite;
 }
 
 [data-theme="dark"] {
@@ -95,10 +137,84 @@ table {
   --main-headings:#ff8132;
   --main-copy: #d1d1d8;
   --link-new: #32f0ff;
-  --link-visited: #23a8b2;
+  --link-visited: #6b818c;
   --main-accent: #ff49db;
 
+  --first-name-gradient: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
+
   --html-background: linear-gradient(to right bottom, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #16172a, #211f3c, #2e274f, #543779, #8543a0, #bf4ac1, #ff49db);
+
+  h1.name-heading {
+    .last span {
+      text-shadow: 0px 0px 12px rgba(0,0,0,1);
+    }
+  }
+  ul.link-list {
+    li {
+      backdrop-filter: blur(10px);
+      background-color: rgba(11, 11, 24, 0.2);
+      box-shadow: 0 .5rem 3rem var(--main-accent);
+      position: relative;
+  
+      a::before,
+      a::after,
+      span::before,
+      span::after {
+        content: '';
+        position: absolute;
+        background: transparent;
+        transition: 1s;
+        -webkit-mix-blend-mode: hue;
+      }
+  
+      a::before,
+      a::after,
+      span::before,
+      span::after {
+        width: 18px;
+        height: 8px;
+      }
+      span::before,
+      span::after {
+        width: 8px;
+        height: 18px;
+      }
+  
+      span::after {
+        top: -2px;
+        right: -2px;
+        border-top: 2px solid var(--link-new);
+        border-right: 2px solid var(--link-new);
+      }
+      a::after {
+        bottom: -2px;
+        right: -2px;
+        border-bottom: 2px solid var(--main-accent);
+        border-right: 2px solid var(--main-accent);
+      }
+  
+      a::before {
+        top: -2px;
+        left: -2px;
+        border-top: 2px solid var(--link-new);
+        border-left: 2px solid var(--link-new);
+      }
+      span::before {
+        bottom: -2px;
+        left: -2px;
+        border-bottom: 2px solid var(--main-accent);
+        border-left: 2px solid var(--main-accent);
+      }
+  
+      a:hover::before,
+      a:hover::after,
+      a:hover span::before,
+      a:hover span::after  {
+        width: calc( 180px / 2);
+        height: calc( 50px / 2);
+      }  
+    }
+  }
 }
 @font-face {
   font-family: 'ArchivoBlack';
@@ -108,8 +224,13 @@ table {
   font-display: swap;
 }
 html {
-  background-color: #0b0b18;
-  background-image: var(--html-background);
+  background-color: var(--main-bg-bk);
+  /* background-image: var(--html-background); */
+  transition: background-color 0.5s ease;
+}
+.preload * { 
+  transition: none !important;
+  animation-duration: 0.001s !important; 
 }
 body {
   font-family: 'Courier New', Courier, monospace;
@@ -127,9 +248,9 @@ h1.name-heading {
   .first {
     font-size: var(--font-size-first);
     display: block;
-    background: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
+    background: var(--first-name-gradient);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;  
   }
   .last {
     display: inline-block;
@@ -138,7 +259,6 @@ h1.name-heading {
     margin-top: calc(var(--margin-top-last)*-1);
     padding-left: var(--margin-left-last);
     span {
-      text-shadow: 0px 0px 12px rgba(0,0,0,1);
       font-size: var(--font-size-last);
       margin-left: calc(var(--margin-left-last)*-1);
       &:nth-child(4) {
@@ -166,15 +286,13 @@ section {
   margin-bottom: 4rem;
 }
 
-/* ACCORDIAN */
-.accordion {
-	width: 100%;
-	max-width: 500px;
-	overflow: hidden;
-	margin-top: 20px;
-  border-radius: calc(0.5rem * 1);
-  border: 2px solid var(--main-accent);
-  background-color: rgba(11, 11, 24, 0.2);
+.accordion,
+ul.link-list {
+  li {
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
   svg {
     fill: var(--link-visited);
     display: inline-block;
@@ -182,6 +300,16 @@ section {
     height: 2rem;
     transition: all 0.25s ease-out;
   }
+}
+/* ACCORDIAN */
+.accordion {
+	width: 100%;
+	max-width: 500px;
+	overflow: hidden;
+	margin-top: 20px;
+  border-radius: calc(0.5rem * 1);
+  /* border: 2px solid var(--main-accent);
+  background-color: rgba(11, 11, 24, 0.2); */
 
 	.accordion__title {
 		position: relative;
@@ -208,7 +336,6 @@ section {
 	h2 {
     margin-left: 1rem;
   }
-
 	&.accordion__active {
     svg {
       rotate: 90deg;
@@ -220,98 +347,28 @@ section {
 	}
 }
 
-li {
-  backdrop-filter: blur(10px);
-  background-color: rgba(11, 11, 24, 0.2);
-  box-shadow: 0 .5rem 3rem var(--main-accent);
-  &:not(:last-child) {
-    margin-bottom: 2rem;
-  }
-  position: relative;
-  a {
-    text-decoration: none;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    color: var(--link-new);
-    border-radius: calc(0.5rem * 1);
-    span {
-      margin-left: 1rem ;
+ul.link-list {
+  li {
+    a {
+      text-decoration: none;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      color: var(--link-new);
+      border-radius: calc(0.5rem * 1);
+      span {
+        margin-left: 1rem ;
+      }
+      &:visited {
+        color: var(--link-visited);
+        fill: var(--link-visited);
+      }
+      &:hover {
+        
+      }
     }
-    &:visited {
-      color: var(--link-visited);
-      fill: var(--link-visited);
-    }
-    &:hover {
-      
-    }
-  }
-  svg {
-    fill: var(--link-visited);
-    display: inline-block;
-    width: 32px;
-    height: 2rem;
-  }
-
-  a::before,
-  a::after,
-  span::before,
-  span::after {
-    content: '';
-    position: absolute;
-    background: transparent;
-    transition: 1s;
-    -webkit-mix-blend-mode: hue;
-  }
-
-  a::before,
-  a::after,
-  span::before,
-  span::after {
-    width: 18px;
-    height: 8px;
-  }
-  span::before,
-  span::after {
-    width: 8px;
-    height: 18px;
-  }
-
-  span::after {
-    top: -2px;
-    right: -2px;
-    border-top: 2px solid #23a8b2;
-    border-right: 2px solid #23a8b2;
-  }
-  a::after {
-    bottom: -2px;
-    right: -2px;
-    border-bottom: 2px solid var(--main-accent);
-    border-right: 2px solid var(--main-accent);
-  }
-
-  a::before {
-    top: -2px;
-    left: -2px;
-    border-top: 2px solid #23a8b2;
-    border-left: 2px solid #23a8b2;
-  }
-  span::before {
-    bottom: -2px;
-    left: -2px;
-    border-bottom: 2px solid var(--main-accent);
-    border-left: 2px solid var(--main-accent);
-  }
-
-  a:hover::before,
-  a:hover::after,
-  a:hover span::before,
-  a:hover span::after  {
-    width: calc( 180px / 2);
-    height: calc( 50px / 2);
   }
 }
-
 /* https://codepen.io/benblustey/pen/poXMNKN */
 @property --rotate {
   syntax: "<angle>";
@@ -335,7 +392,6 @@ li {
     width: var(--card-width);
     height: var(--card-height);
     position: relative;
-    /* border-radius: 50%; */
     margin: 0 auto;
     transition: color 1s;
     &:hover {
@@ -349,7 +405,6 @@ li {
       content: "";
       width: 104%;
       height: 102%;
-      /* border-radius: 50%; */
       background-image: linear-gradient(
         var(--rotate)
         , #32f0ff, #ff8132 43%, #ff49db);
