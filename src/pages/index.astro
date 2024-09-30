@@ -1,5 +1,6 @@
 ---
 import '../assets/styles/style.css'
+import headshot from '../assets/imgs/benjamin-steyaert.jpg'
 import Accordian from '../components/Accordian.astro'
 import ThemeToggle from '../components/ThemeToggle.astro'
 let descTitle = 'Benjamin Steyaert - Creative, Solver, Engineer, Tinkerer, Mechanic'
@@ -18,7 +19,7 @@ import '@fontsource/archivo-black';
   <meta property="og:title" content={descTitle}>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.benjamin-steyaert.com">
-  <meta property="og:image" content="/assets/imgs/benjamin-steyaert.jpg">
+  <meta property="og:image" content="https://www.benjamin-steyaert.com/benjamin-steyaert-og.jpg">
   <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 </head>
 
@@ -26,6 +27,7 @@ import '@fontsource/archivo-black';
   <ThemeToggle />
   <div class="heading">
     <div class="headshot"></div>
+    <link rel="preload" as="image" href={headshot.src} />
   </div>
   <h1 class="name-heading">
     <span class="first">Benjamin</span>

@@ -5,6 +5,8 @@ import sitemap from '@astrojs/sitemap';
 
 import robotsTxt from 'astro-robots-txt';
 
+import compress from 'astro-compress';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.benjamin-steyaert.com',
@@ -12,12 +14,9 @@ export default defineConfig({
   devToolbar: {
     enabled: false
   },
-  integrations: [
-    sitemap(),
-    robotsTxt({
-      sitemap: [
-        'https://www.benjamin-steyaert.com/sitemap-index.xml',
-      ],
-    }),
-  ]
+  integrations: [sitemap(), robotsTxt({
+    sitemap: [
+      'https://www.benjamin-steyaert.com/sitemap-index.xml',
+    ],
+  }), compress()]
 });
