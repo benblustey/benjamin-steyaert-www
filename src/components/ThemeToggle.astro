@@ -33,6 +33,7 @@
     const theme = modeToggle.checked ? 'dark' : 'light';
     setTheme(theme);
     localStorage.setItem('theme',theme)
+    window.umami.track('theme_change');
   });
 
   setTheme(getTheme());

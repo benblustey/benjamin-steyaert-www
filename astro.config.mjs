@@ -1,11 +1,9 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-
 import sitemap from '@astrojs/sitemap';
-
 import robotsTxt from 'astro-robots-txt';
-
 import compress from 'astro-compress';
+import umami from 'astro-umami';
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,5 +16,5 @@ export default defineConfig({
     sitemap: [
       'https://www.benjamin-steyaert.com/sitemap-index.xml',
     ],
-  }), compress()]
+  }), compress(), umami()]
 });
