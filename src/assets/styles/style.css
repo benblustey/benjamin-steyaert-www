@@ -225,13 +225,22 @@ table {
   }
   
 }
-@font-face {
+/* @font-face {
   font-family: 'ArchivoBlack';
-  src: url('/fonts/ArchivoBlack-Regular/ArchivoBlack-Regular.ttf') format('ttf');
+  src: url('/fonts/Archivo_Black/ArchivoBlack-Regular.ttf') format('ttf');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-}
+} */
+
+/* archivo-black-latin-400-normal */
+/* @font-face {
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url(./files/archivo-black-latin-400-normal.woff2) format('woff2'), url(./files/archivo-black-latin-400-normal.woff) format('woff');
+} */
 html {
   background-color: var(--main-bg-bk);
   /* background-image: var(--html-background); */
@@ -383,8 +392,8 @@ ul.link-list {
   max-width: calc(40rem * var(--page-scale));
   margin-inline: auto;
   .headshot {
-    background-image: url('../imgs/benjamin-steyaert.jpg');
-    background-size: 100.6%;
+    /* background-image: url('../imgs/benjamin-steyaert.jpg');
+    background-size: 100.6%; */
     width: var(--card-width);
     height: var(--card-height);
     position: relative;

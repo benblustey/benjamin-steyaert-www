@@ -1,11 +1,21 @@
 ---
-import '../assets/styles/style.css'
-import headshot from '../assets/imgs/benjamin-steyaert.jpg'
 import Accordian from '../components/Accordian.astro'
 import ThemeToggle from '../components/ThemeToggle.astro'
-let descTitle = 'Benjamin Steyaert - Creative, Solver, Engineer, Tinkerer, Mechanic'
-import '@fontsource/archivo-black';
+import archivoBlack from '@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff'
+import '@fontsource/archivo-black/latin.css'
+// import '@fontsource/archivo-black';
+import '../assets/styles/style.css'
 
+import { getImage } from 'astro:assets'
+import image from '../assets/imgs/benjamin-steyaert.jpg'
+const headshotImage = await getImage({
+  src: image,
+  format: "webp",
+  width: 192,
+  height: 192,
+})
+
+let descTitle = 'Benjamin Steyaert - Creative, Solver, Engineer, Tinkerer, Mechanic'
 ---
 
 <!doctype html>
@@ -20,15 +30,22 @@ import '@fontsource/archivo-black';
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.benjamin-steyaert.com">
   <meta property="og:image" content="https://www.benjamin-steyaert.com/benjamin-steyaert-og.jpg">
+  
   <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-  <script defer src="http://137.184.117.173:3000/script.js" data-website-id="29bad1e9-8cd5-464d-b5ea-e1802cbcd4ec"></script>
+  <link rel="preload" href={archivoBlack} crossorigin="anonymous" as="font" type="font/ttf"/>
+  <link rel="preload" href={headshotImage.src} as="image" />
+
+  <script defer src="/umami.js" data-website-id="29bad1e9-8cd5-464d-b5ea-e1802cbcd4ec"></script>
 </head>
 
 <body class="preload">
+  <script>0</script>
   <ThemeToggle />
   <div class="heading">
-    <div class="headshot"></div>
-    <link rel="preload" as="image" href={headshot.src} />
+    <div class="headshot">
+      <img src={headshotImage.src} alt="Benjamin Steyaert" width="192" height="192"/>
+    </div>
+    <!-- <link rel="preload" as="image" href={headshot.src} /> -->
   </div>
   <h1 class="name-heading">
     <span class="first">Benjamin</span>

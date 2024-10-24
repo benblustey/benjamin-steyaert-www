@@ -6,14 +6,15 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro check && astro build",
+    "preview_dist": "npx http-server ./dist/",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/sitemap": "^3.1.6",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.2.1",
     "@fontsource/archivo-black": "^5.1.0",
-    "astro": "^4.15.8",
+    "astro": "^4.16.7",
     "astro-compress": "^2.3.1",
     "astro-robots-txt": "^1.0.0",
     "astro-umami": "^0.0.0",
