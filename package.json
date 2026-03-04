@@ -1,7 +1,7 @@
 {
-  "name": "bsteyaert-www-astro",
+  "name": "bsteyaert-www",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -11,13 +11,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/check": "0.9.6",
+    "@astrojs/cloudflare": "^12.6.12",
+    "@astrojs/sitemap": "3.7.0",
     "@fontsource/archivo-black": "^5.1.0",
-    "astro": "^4.16.7",
+    "astro": "^5.18.0",
     "astro-compress": "^2.3.1",
     "astro-robots-txt": "^1.0.0",
-    "astro-umami": "^0.0.0",
+    "sharp": "^0.34.5",
     "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "wrangler": "^4.70.0"
   }
 }

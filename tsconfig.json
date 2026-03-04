@@ -1,6 +1,10 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "lib": [ "dom", "dom.iterable", "esnext" ]
+    "lib": [ "dom", "dom.iterable", "esnext" ],
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@assets/*": ["./src/assets/*"]
+    }
   },
 }
