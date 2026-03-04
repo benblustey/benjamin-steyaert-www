@@ -92,7 +92,7 @@ table {
   --link-new: #0d7272;
   --link-visited: #6b818c;
   --main-accent: #0d7272;
-  --first-name-gradient: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
+  --first-name-gradient: linear-gradient(var(--main-headings), var(--main-accent));
   --html-background: linear-gradient(to bottom, #ffffff, #eaeaea, #d6d6d6, #c2c2c2, #aeaeae);
   --gradient-headshot: var(--main-accent), var(--main-headings) 43%, var(--link-visited);
 
@@ -102,7 +102,7 @@ table {
     .last {
       color:  var(--main-accent);
       span {
-        text-shadow: none;
+        text-shadow: 0px 0px 4px rgba(0,0,0,0.8);
       }
     }
   }
@@ -124,13 +124,17 @@ table {
 
 @keyframes flicker {
 	0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
-		//text-shadow: none;
     opacity: .99;
 		
 	}
 	20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
 		opacity: 0.4;
 	}
+}
+
+*:focus:not(:focus-visible) {
+  outline: none; /* Hides the outline for mouse clicks */
+  box-shadow: none; /* Use if your framework uses box-shadow for focus (like Bootstrap) */
 }
 
 [data-theme="dark"] {
@@ -143,7 +147,7 @@ table {
   --main-accent: #ff49db;
 
   --gradient-headshot: var(--link-new), var(--main-headings) 43%, var(--main-accent);
-  --first-name-gradient: -webkit-linear-gradient(var(--main-headings), var(--main-accent));
+  --first-name-gradient: linear-gradient(var(--main-headings), var(--main-accent));
   --html-background: linear-gradient(to right bottom, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #0b0b18, #16172a, #211f3c, #2e274f, #543779, #8543a0, #bf4ac1, #ff49db);
 
   h1.name-heading {
@@ -158,6 +162,7 @@ table {
     animation: flicker 1s linear infinite;
   }
    */
+
   .accordion {
     border: 2px solid var(--main-accent);
     border-radius: .5rem;
@@ -166,9 +171,18 @@ table {
   ul.link-list li {
     backdrop-filter: blur(10px);
     background-color: rgba(11, 11, 24, 0.2);
-    box-shadow: 0 .5rem 3rem var(--main-accent);
+    box-shadow: 0 .5rem 1rem var(--main-accent);
+    transition: box-shadow 0.3s ease-in-out;
     position: relative;
-
+    &:focus-within,
+    &:hover {
+      box-shadow: 0 .5rem 3rem var(--main-accent);
+      cursor: pointer;
+      border: none;
+    }
+    a {
+      outline: none;
+    }
     a::before,
     a::after,
     span::before,
@@ -177,7 +191,7 @@ table {
       position: absolute;
       background: transparent;
       transition: 1s;
-      -webkit-mix-blend-mode: hue;
+      mix-blend-mode: hue;
     }
     a::before,
     a::after,
@@ -218,19 +232,16 @@ table {
     a:hover::before,
     a:hover::after,
     a:hover span::before,
-    a:hover span::after  {
+    a:hover span::after,
+    a:focus::before,
+    a:focus::after,
+    a:focus span::before,
+    a:focus span::after  {
       width: calc( 180px / 2);
       height: calc( 50px / 2);
     }  
   }
   
-}
-@font-face {
-  font-family: 'ArchivoBlack';
-  src: url('/fonts/ArchivoBlack-Regular/ArchivoBlack-Regular.ttf') format('ttf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 html {
   background-color: var(--main-bg-bk);
@@ -246,7 +257,7 @@ body {
   min-width: 380px;
   padding-top: var(--container-margin-xl);
 }
-
+/* HEADING NAME */
 h1.name-heading {
   margin-top: var(--container-margin-md);
   margin-bottom: var(--container-margin-md);
@@ -372,9 +383,6 @@ ul.link-list {
         color: var(--link-visited);
         fill: var(--link-visited);
       }
-      &:hover {
-        
-      }
     }
   }
 }
@@ -383,8 +391,8 @@ ul.link-list {
   max-width: calc(40rem * var(--page-scale));
   margin-inline: auto;
   .headshot {
-    background-image: url('../imgs/benjamin-steyaert.jpg');
-    background-size: 100.6%;
+    /* background-image: url('../imgs/benjamin-steyaert.jpg');
+    background-size: 100.6%; */
     width: var(--card-width);
     height: var(--card-height);
     position: relative;
@@ -431,19 +439,15 @@ ul.link-list {
 .toggle-switch {
   position: absolute;
   width: var(--slider-scale);
-  background-color: #FFF;
+  background-color: var(--light);
   top: var(--container-margin-sm);
   right: var(--container-margin-sm);
-  /* top: 50%;
-  right: 50%; */
   label {
     position: absolute;
     width: 100%;
     height: calc(var(--slider-scale)/2);
-    /* background-color: var(--accent-gradient); */
     border-radius: calc(var(--slider-scale)/4);
     cursor: pointer;
-    /* background-image: linear-gradient(to bottom, #0b0b18, #1b2536, #224057, #225d76, #1d7c93, #0f8bac, #009ac5, #00a8e0, #29a1fb, #7892ff, #c177fe, #ff49db); */
     background: linear-gradient(0deg, rgba(0,212,255,1) 16%, rgba(11,11,24,1) 52%);
   }
   input {
@@ -479,4 +483,3 @@ ul.link-list {
     box-shadow: none;
   }
 }
-
