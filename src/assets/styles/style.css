@@ -235,7 +235,7 @@ table {
     }
   }
   .accordion,
-  ul.link-list li {
+  section.link-list ul li {
     box-shadow: rgba(195, 198, 209, 1) 0px 4px 0px 0px;
     outline-color: rgb(156, 54, 181);
     border-radius: 0.75em;
@@ -403,6 +403,9 @@ html {
   background-color: var(--main-bg-bk);
   /* background-image: var(--html-background); */
   transition: background-color 0.5s ease;
+}
+p {
+  color: var(--main-copy);
 }
 .preload * {
   transition: none !important;
